@@ -6,3 +6,4 @@
 /.vs
 /DapRepo.DataAccess/obj
 /DapRepo.DataAccess/bin/Debug
+/packages/Dapper.1.50.2

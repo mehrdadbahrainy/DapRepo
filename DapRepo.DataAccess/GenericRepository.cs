@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
+using Dapper;
 
 namespace DapRepo.DataAccess
 {
@@ -15,37 +14,41 @@ namespace DapRepo.DataAccess
             this.DbConnection = dbConnection;
         }
 
+        public string EntityName => typeof(T).Name;
+
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            var query = $"SELECT * FROM {EntityName}";
+            var results = DbConnection.Query<T>(query);
+            return results;
         }
 
-        int IGenericRepository<T>.Insert(T obj)
+        int IGenericRepository<T>.Insert(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public int Insert(IEnumerable<T> list)
+        public int Insert(IEnumerable<T> entities)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(T obj)
+        public bool Update(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(IEnumerable<T> list)
+        public bool Update(IEnumerable<T> entities)
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(T obj)
+        public bool Delete(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(IEnumerable<T> list)
+        public bool Delete(IEnumerable<T> entities)
         {
             throw new NotImplementedException();
         }

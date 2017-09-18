@@ -3,3 +3,6 @@
 ################################################################################
 
 *.suo
+/.vs
+/DapRepo.DataAccess/obj
+/DapRepo.DataAccess/bin/Debug

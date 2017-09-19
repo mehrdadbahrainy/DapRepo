@@ -16,16 +16,16 @@ namespace DapRepo.DataAccess
             this.DbConnection = dbConnection;
         }
 
-        public string EntityName => typeof(T).Name;
+        protected string EntityName => typeof(T).Name;
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             var query = $"SELECT * FROM {EntityName}";
             var results = DbConnection.Query<T>(query);
             return results;
         }
 
-        public void Insert(T entity)
+        public virtual void Insert(T entity)
         {
             var propertyValues = GetEntityProperties(entity);
             var keyInfo = GetEntityKeyInfo();
@@ -38,34 +38,44 @@ namespace DapRepo.DataAccess
             }
         }
 
-        public void Insert(IEnumerable<T> entities)
+        public virtual void Insert(IEnumerable<T> entities)
+        {
+            foreach (var entity in entities)
+            {
+                Insert(entity);
+            }
+        }
+
+        public virtual void Update(T entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(T entity)
+        public virtual void Update(IEnumerable<T> entities)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(IEnumerable<T> entities)
+        public virtual void Delete(T entity)
         {
-            throw new NotImplementedException();
+            var keyInfo = GetEntityKeyInfo();
+            var keyPairs = $"{keyInfo.Name} = @{keyInfo.Name}";
+            var sql = $"DELETE FROM [{EntityName}] WHERE {keyPairs}";
+            DbConnection.Execute(sql, entity, commandType: CommandType.Text);
         }
 
-        public void Delete(T entity)
+        public virtual void Delete(IEnumerable<T> entities)
         {
-            throw new NotImplementedException();
+            foreach (var entity in entities)
+            {
+                Delete(entity);
+            }
         }
 
-        public void Delete(IEnumerable<T> entities)
+        public virtual void DeleteAll()
         {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteAll()
-        {
-            throw new NotImplementedException();
+            var sql = $"DELETE FROM [{EntityName}]";
+            DbConnection.Execute(sql, commandType: CommandType.Text);
         }
 
         private Dictionary<string, object> GetEntityProperties(T entity)

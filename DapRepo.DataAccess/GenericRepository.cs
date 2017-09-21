@@ -48,12 +48,21 @@ namespace DapRepo.DataAccess
 
         public virtual void Update(T entity)
         {
-            throw new NotImplementedException();
+            var propertyValues = GetEntityProperties(entity);
+            var keyInfo = GetEntityKeyInfo();
+            var keyPairs = $"{keyInfo.Name} = @{keyInfo.Name}";
+            var pairs = propertyValues.Where(key => key.Key != keyInfo.Name).SelectMany(key => $"{key.Key}=@{key.Key}").ToList();
+            var updateParameters = string.Join(", ", pairs);
+            var sql = $"UPDATE [{EntityName}] SET {updateParameters} WHERE {keyPairs}";
+            DbConnection.Execute(sql, entity, commandType: CommandType.Text);
         }
 
         public virtual void Update(IEnumerable<T> entities)
         {
-            throw new NotImplementedException();
+            foreach (var entity in entities)
+            {
+                Update(entity);
+            }
         }
 
         public virtual void Delete(T entity)

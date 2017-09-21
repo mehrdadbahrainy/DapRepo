@@ -51,7 +51,7 @@ namespace DapRepo.DataAccess
             var propertyValues = GetEntityProperties(entity);
             var keyInfo = GetEntityKeyInfo();
             var keyPairs = $"{keyInfo.Name} = @{keyInfo.Name}";
-            var pairs = propertyValues.Where(key => key.Key != keyInfo.Name).SelectMany(key => $"{key.Key}=@{key.Key}").ToList();
+            var pairs = propertyValues.Where(key => key.Key != keyInfo.Name).Select(key => $"{key.Key}=@{key.Key}");
             var updateParameters = string.Join(", ", pairs);
             var sql = $"UPDATE [{EntityName}] SET {updateParameters} WHERE {keyPairs}";
             DbConnection.Execute(sql, entity, commandType: CommandType.Text);

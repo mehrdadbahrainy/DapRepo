@@ -152,7 +152,7 @@ namespace DapRepo.DataAccess
             }
             else if (type == typeof(Guid))
             {
-                return "UNIQUEIDENTOFIER";
+                return "UNIQUEIDENTIFIER";
             }
 
 

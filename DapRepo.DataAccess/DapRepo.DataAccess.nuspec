@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>Hurdad.DataAccess.DapRepo</id>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <title>DapRepo</title>
     <authors>MehrdadBahrainy</authors>
     <owners>MehrdadBahrainy</owners>
     <projectUrl>https://github.com/mehrdadbahrainy/DapRepo</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Dapper Generic Repository</description>
-    <releaseNotes>This is the first version</releaseNotes>
+    <releaseNotes></releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>Dapper Generic Repository c#</tags>
   </metadata>

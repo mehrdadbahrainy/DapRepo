@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
+using System.Threading.Tasks;
 using Dapper;
 
 namespace DapRepo.DataAccess
@@ -22,6 +24,20 @@ namespace DapRepo.DataAccess
         {
             var query = $"SELECT * FROM {EntityName}";
             var results = DbConnection.Query<T>(query);
+            return results;
+        }
+
+        public virtual IEnumerable<T> GetAllPaged(int limit, int offset)
+        {
+            var query = $"SELECT * FROM {EntityName} ORDER BY Id DESC OFFSET @offset ROWS FETCH NEXT @limit ROWS ONLY";
+            var results = DbConnection.Query<T>(query, new { Limit = limit, Offset = offset });
+            return results;
+        }
+
+        public async Task<IEnumerable<T>> GetAllPagedAsync(int limit, int offset)
+        {
+            var query = $"SELECT * FROM {EntityName} ORDER BY Id DESC OFFSET @offset ROWS FETCH NEXT @limit ROWS ONLY";
+            var results = await DbConnection.QueryAsync<T>(query, new { Limit = limit, Offset = offset });
             return results;
         }
 
@@ -95,7 +111,7 @@ namespace DapRepo.DataAccess
             foreach (var property in properties)
             {
                 // Skip reference types except string
-                if (property.PropertyType.IsClass && property.PropertyType != typeof(string))
+                if (property.PropertyType.IsClass && property.PropertyType != typeof(string) && property.PropertyType != typeof(byte[]))
                     continue;
 
                 // Skip methods without a public setter

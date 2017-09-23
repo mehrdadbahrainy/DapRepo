@@ -31,7 +31,7 @@ namespace DapRepo.DataAccess
             var keyInfo = GetEntityKeyInfo();
             var sql = $"INSERT INTO [{EntityName}] ({string.Join(", ", propertyValues.Keys)}) VALUES(@{string.Join(", @", propertyValues.Keys)}) SELECT CAST(scope_identity() AS {GetSqlDataType(keyInfo.PropertyType)})";
             var result = DbConnection.Query(sql, propertyValues, commandType: CommandType.Text).First() as IDictionary<string, object>;
-            if (result != null)
+            if (result != null && !keyInfo.IsDefined(typeof(NotDbGeneratedAttribute), false))
             {
                 var keyValue = result.Values.ToArray()[0];
                 keyInfo.SetValue(entity, Convert.ChangeType(keyValue, keyInfo.PropertyType));

@@ -1,6 +1,8 @@
-﻿namespace DapRepo.DataAccess
+﻿using System;
+
+namespace DapRepo.DataAccess
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
     }
 }

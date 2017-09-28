@@ -1,0 +1,7 @@
+D:\Github\Source\Repos\DapRepo\DapRepo.DataAccess\bin\Debug\DapRepo.DataAccess.dll
+D:\Github\Source\Repos\DapRepo\DapRepo.DataAccess\bin\Debug\DapRepo.DataAccess.pdb
+D:\Github\Source\Repos\DapRepo\DapRepo.DataAccess\obj\Debug\DapRepo.DataAccess.csproj.CoreCompileInputs.cache
+D:\Github\Source\Repos\DapRepo\DapRepo.DataAccess\obj\Debug\DapRepo.DataAccess.dll
+D:\Github\Source\Repos\DapRepo\DapRepo.DataAccess\obj\Debug\DapRepo.DataAccess.pdb
+D:\Github\Source\Repos\DapRepo\DapRepo.DataAccess\bin\Debug\Dapper.dll
+D:\Github\Source\Repos\DapRepo\DapRepo.DataAccess\bin\Debug\Dapper.xml

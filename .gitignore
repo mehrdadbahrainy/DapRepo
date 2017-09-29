@@ -2,10 +2,54 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+# User-specific files
 *.suo
-/.vs
-/DapRepo.DataAccess/obj
-/DapRepo.DataAccess/bin/Debug
-/packages/Dapper.1.50.2
-*.nupkg
 *.user
+*.sln.docstates
+*.nupkg
+**/.vs
+**/[Pp]ackages
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Roslyn cache directories
+*.ide/
+
+*_i.c
+*_p.c
+*_i.h
+*.ilk
+*.meta
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*.log
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+!dist/*
+!dist/[Dd]ebug/*
+!dist/[Rr]elease/*

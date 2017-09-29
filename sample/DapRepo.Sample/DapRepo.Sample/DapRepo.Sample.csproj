@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ABAE0F8F-1769-4B20-ABAB-D69989442F7C}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DapRepo.DataAccess</RootNamespace>
-    <AssemblyName>DapRepo.DataAccess</AssemblyName>
+    <ProjectGuid>{2751E756-8984-4453-826B-B1AB9113C21C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DapRepo.Sample</RootNamespace>
+    <AssemblyName>DapRepo.Sample</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,10 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
+    <Reference Include="Dapper, Version=1.50.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.0\lib\net451\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="DapRepo.DataAccess">
+      <HintPath>..\..\..\dist\Debug\DapRepo.DataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
@@ -44,22 +50,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenericRepository.cs" />
-    <Compile Include="IGenericRepository.cs" />
-    <Compile Include="IgnoreAttribute.cs" />
-    <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="KeyAttribute.cs" />
-    <Compile Include="NotDbGeneratedAttribute.cs" />
+    <Compile Include="AppUnitOfWork.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="Repositories\PersonRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DapRepo.DataAccess.nuspec" />
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
 </Project>

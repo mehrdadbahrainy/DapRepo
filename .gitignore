@@ -49,3 +49,7 @@ bld/
 *.pidb
 *.svclog
 *.scc
+
+!dist/*
+!dist/[Dd]ebug/*
+!dist/[Rr]elease/*

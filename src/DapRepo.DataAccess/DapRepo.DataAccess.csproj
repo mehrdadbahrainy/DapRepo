@@ -59,7 +59,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>robocopy $(TargetDir) $(SolutionDir)..\dist\$(ConfigurationName)\ $(TargetName).dll /s
+set rce=%25errorlevel%25
+if not %25rce%25==1 exit %25rce%25 else exit 0</PostBuildEvent>
   </PropertyGroup>
 </Project>
